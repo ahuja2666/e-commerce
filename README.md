@@ -1,30 +1,36 @@
-# React + TypeScript + Vite
+# E-commerce App Assignment(Hocalwire)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Objective
 
-Currently, two official plugins are available:
+Develop an e-commerce website using the FakeStoreAPI with essential functionalities such as product listing, detailed product views, and cart management.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Requirements
 
-## Expanding the ESLint configuration
+### Homepage:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Fetch and display a list of products from the FakeStoreAPI.
+- Show essential product information like image, title, and price.
+- Each product links to its details page.
 
-- Configure the top-level `parserOptions` property like this:
+### Details Page:
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+- Navigate to a detailed view of each product upon clicking.
+- Display comprehensive product information such as description and category.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### Cart Functionality:
+
+- Allow users to add products to the cart from both the homepage and product details page.
+- Display cart contents including product names, quantities, and total price.
+- Enable actions to adjust quantities or remove items from the cart.
+
+## Implementation Details
+
+- Built using React.js with TypeScript.
+- Used React Router for seamless navigation between pages.
+- Styled using Tailwind CSS for responsive design and improved user experience.
+- Implemented Redux for state management, storing cart items.
+- Incorporated Redux Persist for cart state persistence across sessions.
+
+## Resources
+
+- FakeStoreAPI Documentation: [FakeStoreAPI Docs](https://fakestoreapi.com/docs)
