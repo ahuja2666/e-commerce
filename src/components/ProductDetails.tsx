@@ -42,7 +42,7 @@ export default function ProductDetails() {
 
   return (
     <div className="flex flex-col">
-      <section className="bg-gray-100 dark:bg-gray-800 py-12 md:py-16 lg:py-24 max-sm:mx-2">
+      <section className="bg-[#040404] py-12 md:py-16 lg:py-24 max-sm:mx-2">
         <div className="container px-4 md:px-6 grid md:grid-cols-2 gap-8 items-center">
           {loading ? (
             <div className="w-full">
@@ -161,7 +161,7 @@ export default function ProductDetails() {
                   </button>
                 )}
 
-                <div className="cursor-pointer inline-flex h-10 items-center justify-center rounded-md border  border-gray-200 bg-white px-8 text-sm font-medium shadow-sm transition-colors hover:bg-gray-100 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50  dark:border-gray-800 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus-visible:ring-gray-300">
+                <div className="cursor-pointer inline-flex h-10 items-center justify-center rounded-md border   px-8 text-sm font-medium shadow-sm transition-colors   focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50  border-gray-800 bg-gray-950 hover:bg-gray-800 hover:text-gray-50 focus-visible:ring-gray-300">
                   <HeartIcon className="w-4 h-4 mr-2" />
                   Add to Wishlist
                 </div>

@@ -33,7 +33,7 @@ function App() {
           {new Array(20).fill(1).map((item, idx) => (
             <div
               key={item + idx + "ske"}
-              className="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:-translate-y-2 hover:shadow-lg dark:bg-gray-950"
+              className="rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:-translate-y-2 hover:shadow-lg bg-gray-950"
             >
               <div className="h-60 bg-gray-200 dark:bg-gray-800 animate-pulse" />
               <div className="p-4 space-y-4">

@@ -5,7 +5,7 @@ import { getCartQuantity } from "../slices/cartSlice";
 const Header = () => {
   const cartQuantity = useAppSelector(getCartQuantity);
   return (
-    <div className="navbar bg-base-100 fixed z-10">
+    <div className="navbar bg-[#040404] fixed z-10">
       <div className="flex-1">
         <Link to="/">
           <p className="btn btn-ghost text-xl">e Commerce</p>
