@@ -2,7 +2,7 @@ import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { App } from "./routes";
+import { App, Cart, ProductDetails } from "./routes";
 import Layout from "./components/Layout";
 
 const router = createBrowserRouter([
@@ -23,10 +23,18 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "/details/:id",
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <ProductDetails />
+          </Suspense>
+        ),
+      },
+      {
         path: "/cart",
         element: (
           <Suspense fallback={<div>Loading...</div>}>
-            <div>Cart</div>
+            <Cart />
           </Suspense>
         ),
       },
@@ -44,7 +52,7 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
+  <React.Fragment>
     <RouterProvider router={router} />
-  </React.StrictMode>
+  </React.Fragment>
 );

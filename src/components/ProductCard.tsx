@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export type ProductCardPropType = {
   id: number;
@@ -10,38 +11,41 @@ export type ProductCardPropType = {
     rate: number;
     count: number;
   };
+  price?: number;
 };
 
 type ProductCardProp = {
   product: ProductCardPropType;
-  newProduct: boolean;
 };
 
-const ProductCard: React.FC<ProductCardProp> = ({ product, newProduct }) => {
-  const { image, title, category } = product;
+const ProductCard: React.FC<ProductCardProp> = ({ product }) => {
+  const { id, image, title, category } = product;
 
   return (
-    <div className="card w-full md:w-96 bg-zinc-700 shadow-xl cursor-pointer h-full">
-      <figure>
+    <div className="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:-translate-y-2 hover:shadow-lg dark:bg-gray-950 flex flex-col h-full">
+      <Link to={`/details/${id}`} className="block">
         <img
-          src={
-            image
-              ? image
-              : "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
-          }
-          alt={title ? title : "Dummy Image"}
-          className="object-cover w-full h-60 md:h-60"
+          src={image ? image : "/vite.svg"}
+          alt="Product Image"
+          width={400}
+          height={300}
+          className="w-full h-60 object-cover"
         />
-      </figure>
-      <div className="card-body p-4 flex flex-col justify-between">
-        <h2 className="card-title">
-          {title ? title : "Untitled"}
-          {newProduct && <div className="badge badge-secondary">NEW</div>}
-        </h2>
-        <div className="card-actions justify-between items-center">
-          {category && <div className="badge badge-outline">{category}</div>}
-          <button className="btn btn-primary">Buy Now</button>
+      </Link>
+      <div className="p-4 flex flex-col flex-grow">
+        <div className="flex-grow">
+          <Link to={`/details/${id}`} className="block">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-50 mb-1">
+              {title ? title : null}
+            </h3>
+          </Link>
+          <p className="text-gray-500 dark:text-gray-400 mb-4">
+            {category ? category : null}
+          </p>
         </div>
+        <button className="cursor-pointer inline-flex h-10 items-center justify-center rounded-md bg-gray-900 px-8 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300">
+          Add to Cart
+        </button>
       </div>
     </div>
   );
