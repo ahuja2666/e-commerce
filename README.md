@@ -1,6 +1,6 @@
 # E-commerce App Assignment(Hocalwire)
 
-## [Live Url](https://e-commerce-ten-mauve-22.vercel.app/)
+## [Live Url](https://e-commerce-harshit.vercel.app/)
 
 ## Objective
 
