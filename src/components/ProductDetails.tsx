@@ -2,11 +2,23 @@ import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ProductCardPropType } from "./ProductCard";
 import toast from "react-hot-toast";
+import { useAppSelector, useAppDispatch } from "../hooks";
+import {
+  addItemToCart,
+  decreaseQuantity,
+  removeItemFromCart,
+  selectCartItems,
+} from "../slices/cartSlice";
+import TrashIcon from "./TrashIcon";
+import MinusIcon from "./MinusIcon";
+import PlusIcon from "./PlusIcon";
 
 export default function ProductDetails() {
   const { id } = useParams();
   const [product, setProduct] = useState<ProductCardPropType | null>(null);
   const [loading, setLoading] = useState(true);
+  const cart = useAppSelector(selectCartItems);
+  const dispatch = useAppDispatch();
 
   const getProductById = useCallback(async () => {
     setLoading(true);
@@ -103,12 +115,52 @@ export default function ProductDetails() {
                 </span>
               </div>
               <div className="flex gap-4">
-                <button
-                  disabled={loading}
-                  className="inline-flex h-10 items-center justify-center rounded-md bg-gray-900 px-8 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
-                >
-                  Add to Cart
-                </button>
+                {cart[product?.id || ""] ? (
+                  <>
+                    {cart[product?.id || ""].quantity?.toString() === "1" ? (
+                      <button
+                        onClick={() =>
+                          dispatch(removeItemFromCart(product?.id || ""))
+                        }
+                        className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-gray-900 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
+                      >
+                        <TrashIcon className="h-4 w-4" />
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() =>
+                          dispatch(decreaseQuantity(product?.id || ""))
+                        }
+                        className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-gray-900 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
+                      >
+                        <MinusIcon className="h-4 w-4" />
+                      </button>
+                    )}
+                    <span className="text-sm sm:text-base mt-2">
+                      {cart[product?.id || ""].quantity}
+                    </span>
+
+                    <button
+                      onClick={() => {
+                        if (product) dispatch(addItemToCart(product));
+                      }}
+                      className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-gray-900 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
+                    >
+                      <PlusIcon className="h-4 w-4" />
+                    </button>
+                  </>
+                ) : (
+                  <button
+                    onClick={() => {
+                      if (product) dispatch(addItemToCart(product));
+                    }}
+                    disabled={loading}
+                    className="inline-flex h-10 items-center justify-center rounded-md bg-gray-900 px-8 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
+                  >
+                    Add to Cart
+                  </button>
+                )}
+
                 <div className="cursor-pointer inline-flex h-10 items-center justify-center rounded-md border  border-gray-200 bg-white px-8 text-sm font-medium shadow-sm transition-colors hover:bg-gray-100 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50  dark:border-gray-800 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus-visible:ring-gray-300">
                   <HeartIcon className="w-4 h-4 mr-2" />
                   Add to Wishlist
