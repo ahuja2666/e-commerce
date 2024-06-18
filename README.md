@@ -1,5 +1,7 @@
 # E-commerce App Assignment(Hocalwire)
 
+## [Live Url](https://e-commerce-ten-mauve-22.vercel.app/)
+
 ## Objective
 
 Develop an e-commerce website using the FakeStoreAPI with essential functionalities such as product listing, detailed product views, and cart management.
